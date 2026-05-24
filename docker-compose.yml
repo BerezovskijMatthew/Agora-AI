@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  agora-ai:
+    build: .
+    container_name: agora-ai
+    ports:
+      - "8080:8080"
+    environment:
+      # Укажите ваш Groq API-ключ здесь или в файле .env
+      - GROQ_API_KEY=${GROQ_API_KEY}
+    volumes:
+      # Данные БД сохраняются между перезапусками
+      - agora_data:/app/data
+    restart: unless-stopped
+
+volumes:
+  agora_data:
